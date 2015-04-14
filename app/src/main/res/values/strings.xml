@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Reminder</string>
+
+    <string name="hello_world">Bliblou</string>
+    <string name="action_settings">Paramètres</string>
+
+    <string name="drawer_open">Open drawer</string>
+    <string name="drawer_close">Close drawer</string>
+
+    <string name="title_0"> Menu Principal</string>
+    <string name="title_1"> Ajout rappels</string>
+    <string name="title_2"> Suppression de rappels</string>
+    <string name="title_3"> Ajout de lieux</string>
+    <string name="title_4"> Suppression de lieux</string>
+
+    <string name="rappel">Veuillez entrez ici votre rappel</string>
+    <string name="message">Salut les petits loups!! Vous pouvez regardez un peu ce que jai fait en cliquant sur le menu \à gauche, j\'ai juste mis en place les bases de l\'application</string>
+</resources>
