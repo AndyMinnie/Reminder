@@ -1,12 +1,17 @@
 package andreacauchoix.reminder;
 
+        import android.app.AlertDialog;
         import android.app.Fragment;
+        import android.content.DialogInterface;
         import android.os.Bundle;
         import android.view.LayoutInflater;
         import android.view.View;
         import android.view.ViewGroup;
+        import android.widget.Button;
+        import android.widget.EditText;
         import android.widget.ImageView;
         import android.widget.TextView;
+        import android.widget.Toast;
 
 /**
  * Created by Andréa on 14/04/2015.
@@ -20,26 +25,18 @@ public class AjoutRappel extends Fragment {
     public static final String IMAGE_RESOURCE_ID = "iconResourceID";
     public static final String ITEM_NAME = "itemName";
 
-    private int id;
-    private String rappel;
-    private String date;
-    private String lieu;
+    public void enregistrer(){
 
-    public AjoutRappel() {
+        RappelData dataInput = new RappelData();
+        dataInput.setDate(((EditText) getView().findViewById(R.id.date)).getText().toString());
+        dataInput.setRappel(((EditText) getView().findViewById(R.id.rappel)).getText().toString());
+        dataInput.setLieu(((EditText) getView().findViewById(R.id.lieu)).getText().toString());
 
-    }
-    public AjoutRappel(int id, String titre, String date, String lieu){
-        this.id = id;
-        this.rappel = titre;
-        this.date = date;
-        this.lieu = lieu;
+        BDD datasource = new BDD(getActivity());
+        datasource.ajoutRappel(dataInput);
+        Toast.makeText(getActivity().getApplicationContext(),"Text Note Saved!", Toast.LENGTH_SHORT).show();
     }
 
-    public AjoutRappel(String titre, String date, String lieu){
-        this.rappel = titre;
-        this.date = date;
-        this.lieu = lieu;
-    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -53,30 +50,20 @@ public class AjoutRappel extends Fragment {
         tvItemName.setText(getArguments().getString(ITEM_NAME));
         ivIcon.setImageDrawable(view.getResources().getDrawable(
                 getArguments().getInt(IMAGE_RESOURCE_ID)));
+
+        Button clickButton = (Button) view.findViewById(R.id.ajouter_rappel);
+        clickButton.setOnClickListener(new View.OnClickListener() {
+                public void onClick (View view){
+                    switch (view.getId()) {
+                        case R.id.ajouter_rappel:
+                            Toast.makeText(getActivity().getApplicationContext(), "Text Note Saved!", Toast.LENGTH_SHORT).show();
+                            enregistrer();
+                            break;
+                    }
+                }
+            }
+        );
+
         return view;
     }
-    public String getRappel() {
-        return rappel;
-    }
-
-    public String getLieu() {
-        return lieu;
-    }
-
-    public void setRappel(String titre) {
-        this.rappel = titre;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getDate() {
-        return date;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
-    }
-
 }

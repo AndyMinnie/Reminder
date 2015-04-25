@@ -60,8 +60,8 @@ public class BDD extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public ArrayList<AjoutRappel> getRappel(){
-        ArrayList<AjoutRappel> rappels = new ArrayList<AjoutRappel>();
+    public ArrayList<RappelData> getRappels(){
+        ArrayList<RappelData> rappels = new ArrayList<RappelData>();
 
         String query = "SELECT * FROM " + TABLE_RAPPEL;
         SQLiteDatabase db = this.getReadableDatabase();
@@ -69,7 +69,7 @@ public class BDD extends SQLiteOpenHelper {
 
         if(cursor.moveToFirst()){
             do{
-                AjoutRappel rappel = new AjoutRappel();
+                RappelData rappel = new RappelData();
                 rappel.setId(Integer.parseInt(cursor.getString(0)));
                 rappel.setRappel(cursor.getString(1));
                 rappel.setDate(cursor.getString(2));
@@ -79,7 +79,8 @@ public class BDD extends SQLiteOpenHelper {
 
         return rappels;
     }
-    public AjoutRappel getRappel(int id){
+
+    public RappelData getRappel(int id){
 
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.query(TABLE_RAPPEL,
@@ -93,14 +94,15 @@ public class BDD extends SQLiteOpenHelper {
         if ( cursor != null){
             cursor.moveToFirst();
         }
-        AjoutRappel rappel= new AjoutRappel();
+        RappelData rappel= new RappelData();
         rappel.setId(Integer.parseInt(cursor.getString(0)));
         rappel.setRappel(cursor.getString(1));
         rappel.setDate(cursor.getString(2));
 
         return rappel;
     }
-    public void modifRappel(AjoutRappel rappel){
+
+    public void modifRappel(RappelData rappel){
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
@@ -117,7 +119,6 @@ public class BDD extends SQLiteOpenHelper {
         db.close();
     }
 
-    //select type, count(type) from table group by type;
     public String getLieuById(int id){
 
         SQLiteDatabase db = this.getReadableDatabase();
@@ -137,7 +138,7 @@ public class BDD extends SQLiteOpenHelper {
         return cursor.getString(3);
     }
 
-    public void ajoutRappel(AjoutRappel rappel){
+    public void ajoutRappel(RappelData rappel){
 
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -185,6 +186,7 @@ public class BDD extends SQLiteOpenHelper {
         return titre ;
 
     }
+
     public String getDateById(int id){
         SQLiteDatabase db = this.getReadableDatabase();
 
