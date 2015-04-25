@@ -56,7 +56,7 @@ public class AjoutRappel extends Fragment {
                 public void onClick (View view){
                     switch (view.getId()) {
                         case R.id.ajouter_rappel:
-                            Toast.makeText(getActivity().getApplicationContext(), "Text Note Saved!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity().getApplicationContext(), "Rappel enregistré!", Toast.LENGTH_SHORT).show();
                             enregistrer();
                             break;
                     }

@@ -1,60 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="horizontal"
-    >
+<LinearLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#fb030303" tools:context=".MainActivity">
 
-    <!--
-    **************************IMPORTANT***********************************
-     change this id attribute values as "frag2_icon" and "frag2_text" for
-     fragment_layout_two.xml and "frag3_icon" and "frag3_text" for
-     fragment_layout_three.xml
-    **********************************************************************
-      -->
-
-
-    <LinearLayout
-        android:orientation="vertical"
+    <ListView android:id="@+id/listView1"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
+        android:layout_height="fill_parent"
+        android:clipToPadding="false"
+        android:divider="#cc35b7ec"
+        android:dividerHeight="10dp"
+        android:layout_weight="1"
+        android:drawSelectorOnTop="false"
+        android:background="@android:color/background_dark"
+        android:listSelector="@android:color/darker_gray" />
 
-        <ImageView
-            android:id="@+id/frag1_icon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            />
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="10"
+        android:id="@+id/buttonAjout"
+        android:text="Ajouter un wifi"
+        android:textColor="#FFFFFF"
+        android:background="#cc8b8d91"
+        />
 
-        <TextView
-            android:id="@+id/frag1_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:textAppearance="?android:attr/textAppearanceLarge" />
-        <EditText
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:hint="Nom du nouveau lieu"
-            android:id="@+id/ajout_lieu"
-            android:layout_weight="6"
-            android:singleLine = "true"/>
-
-        <EditText
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:hint="Nouveau réseau wifi"
-            android:id="@+id/ajout_wifi"
-            android:layout_weight="6"
-            android:singleLine = "true"/>
-
-        <Button
-            android:layout_width="fill_parent"
-            android:layout_height="40dp"
-            android:text="Ajout d'un nouveau Lieu"
-            android:id="@+id/ajouter_rappel"
-            android:textColor="#fb030303"
-            android:background="#cc35b7ec"/>
-
-    </LinearLayout>
 
 </LinearLayout>
