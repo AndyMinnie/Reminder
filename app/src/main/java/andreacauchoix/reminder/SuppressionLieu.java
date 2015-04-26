@@ -37,9 +37,7 @@ public class SuppressionLieu extends ListFragment {
 
     LieuData dataSelected;
 
-    public SuppressionLieu() {
-
-    }
+    public SuppressionLieu() {}
 
     public void recupererDatas(){
         BDD datasource = new BDD(getActivity());
@@ -59,7 +57,6 @@ public class SuppressionLieu extends ListFragment {
         tvItemName.setText(getArguments().getString(ITEM_NAME));
         ivIcon.setImageDrawable(view.getResources().getDrawable(
                 getArguments().getInt(IMAGE_RESOURCE_ID)));
-
 
         values = null;
         recupererDatas();

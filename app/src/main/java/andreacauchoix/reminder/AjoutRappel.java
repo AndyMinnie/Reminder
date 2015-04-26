@@ -2,7 +2,10 @@ package andreacauchoix.reminder;
 
         import android.app.AlertDialog;
         import android.app.DatePickerDialog;
+        import android.app.Dialog;
+        import android.app.DialogFragment;
         import android.app.Fragment;
+        import android.content.Context;
         import android.content.DialogInterface;
         import android.os.Bundle;
         import android.util.Log;
@@ -16,11 +19,13 @@ package andreacauchoix.reminder;
         import android.widget.TextView;
         import android.widget.Toast;
 
+        import java.util.Calendar;
+
 /**
  * Created by Andréa on 14/04/2015.
  */
 
-public class AjoutRappel extends Fragment {
+public class AjoutRappel extends DialogFragment {
 
     ImageView ivIcon;
     TextView tvItemName;
@@ -28,14 +33,24 @@ public class AjoutRappel extends Fragment {
     public static final String IMAGE_RESOURCE_ID = "iconResourceID";
     public static final String ITEM_NAME = "itemName";
 
-    DatePicker dpResult;
-    EditText tvDisplayDate;
+    private TextView Output;
+    private Button changeDate;
+
+    private int year;
+    private int month;
+    private int day;
+
+    static final int DATE_PICKER_ID = 1111;
+
+
+    private Context _context;
+    private DatePickerDialog.OnDateSetListener _listener;
 
     public void enregistrer(){
 
         RappelData dataInput = new RappelData();
 
-      //  dataInput.setDate(((EditText) getView().findViewById(R.id.date)).getText().toString());
+        dataInput.setDate(((EditText) getView().findViewById(R.id.date)).getText().toString());
         dataInput.setRappel(((EditText) getView().findViewById(R.id.rappel)).getText().toString());
         dataInput.setLieu(((EditText) getView().findViewById(R.id.lieu)).getText().toString());
 
@@ -71,33 +86,35 @@ public class AjoutRappel extends Fragment {
             }
         );
 
-        dpResult = (DatePicker) view.findViewById(R.id.date);
-        tvDisplayDate = (EditText) view.findViewById(R.id.rappel);
+        Output = (TextView) view.findViewById(R.id.date);
+        changeDate = (Button) view.findViewById(R.id.changer_date);
 
+        final Calendar c = Calendar.getInstance();
+        year  = c.get(Calendar.YEAR);
+        month = c.get(Calendar.MONTH);
+        day   = c.get(Calendar.DAY_OF_MONTH);
+
+        Output.setText(new StringBuilder().append("Date: ").append(month + 1).append("-").append(day).append("-").append(year).append(" "));
+
+        changeDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DatePickerDialog d = new DatePickerDialog(getActivity(),pickerListener, year, month, day);
+                d.show();
+            }
+
+        });
         return view;
     }
 
-
-    private DatePickerDialog.OnDateSetListener datePickerListener
-            = new DatePickerDialog.OnDateSetListener() {
-
-
-        // when dialog box is closed, below method will be called.
+    private DatePickerDialog.OnDateSetListener pickerListener = new DatePickerDialog.OnDateSetListener() {
+        @Override
         public void onDateSet(DatePicker view, int selectedYear,
                               int selectedMonth, int selectedDay) {
-            int year = selectedYear;
-            int month = selectedMonth;
-            int day = selectedDay;
-
-            // set selected date into textview
-            tvDisplayDate.setText(new StringBuilder()
-                    // Month is 0 based, just add 1
-                    .append(month + 1).append("-").append(day).append("-")
-                    .append(year).append(" "));
-
-            // set selected date into datepicker also
-            dpResult.init(year, month, day, null);
-
+            year  = selectedYear;
+            month = selectedMonth;
+            day   = selectedDay;
+            Output.setText(new StringBuilder().append("Date: ").append(month + 1).append("-").append(day).append("-").append(year) .append(" "));
         }
     };
 }

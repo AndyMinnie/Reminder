@@ -65,10 +65,7 @@ public class AjoutLieu extends Fragment {
                        }
                    }
                }
-
-
         );
-
         return view;
     }
 
@@ -77,7 +74,6 @@ public class AjoutLieu extends Fragment {
         LieuData lieuInput = new LieuData();
         lieuInput.setName(((EditText) getView().findViewById((R.id.lieu))).getText().toString());
         lieuInput.setWifi_id(((EditText) getView().findViewById((R.id.lieu))).getText().toString());
-
 
         BDD datasource = new BDD(getActivity());
         datasource.ajoutLieu(lieuInput);

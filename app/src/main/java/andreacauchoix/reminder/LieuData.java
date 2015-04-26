@@ -11,7 +11,9 @@ public class LieuData {
 
     public LieuData(){
 
-    }/*
+    }
+
+    /*
     public LieuData(String name, String wifi_id){
         this.name = name;
         this.wifi_id = wifi_id;
