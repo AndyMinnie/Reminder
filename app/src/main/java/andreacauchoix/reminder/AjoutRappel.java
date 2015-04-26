@@ -1,13 +1,16 @@
 package andreacauchoix.reminder;
 
         import android.app.AlertDialog;
+        import android.app.DatePickerDialog;
         import android.app.Fragment;
         import android.content.DialogInterface;
         import android.os.Bundle;
+        import android.util.Log;
         import android.view.LayoutInflater;
         import android.view.View;
         import android.view.ViewGroup;
         import android.widget.Button;
+        import android.widget.DatePicker;
         import android.widget.EditText;
         import android.widget.ImageView;
         import android.widget.TextView;
@@ -24,6 +27,9 @@ public class AjoutRappel extends Fragment {
 
     public static final String IMAGE_RESOURCE_ID = "iconResourceID";
     public static final String ITEM_NAME = "itemName";
+
+    DatePicker dpResult;
+    EditText tvDisplayDate;
 
     public void enregistrer(){
 
@@ -64,6 +70,33 @@ public class AjoutRappel extends Fragment {
             }
         );
 
+        dpResult = (DatePicker) view.findViewById(R.id.date);
+        tvDisplayDate = (EditText) view.findViewById(R.id.rappel);
+
         return view;
     }
+
+
+    private DatePickerDialog.OnDateSetListener datePickerListener
+            = new DatePickerDialog.OnDateSetListener() {
+
+
+        // when dialog box is closed, below method will be called.
+        public void onDateSet(DatePicker view, int selectedYear,
+                              int selectedMonth, int selectedDay) {
+            int year = selectedYear;
+            int month = selectedMonth;
+            int day = selectedDay;
+
+            // set selected date into textview
+            tvDisplayDate.setText(new StringBuilder()
+                    // Month is 0 based, just add 1
+                    .append(month + 1).append("-").append(day).append("-")
+                    .append(year).append(" "));
+
+            // set selected date into datepicker also
+            dpResult.init(year, month, day, null);
+
+        }
+    };
 }
