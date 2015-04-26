@@ -93,6 +93,26 @@ public class BDD extends SQLiteOpenHelper {
         return rappels;
     }
 
+    public ArrayList<LieuData> getLieux(){
+        ArrayList<LieuData> lieux = new ArrayList<LieuData>();
+
+        String query = "SELECT * FROM " + TABLE_LIEU;
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(query, null);
+
+        if(cursor.moveToFirst()){
+            do{
+                LieuData lieu = new LieuData();
+                lieu.setId(Integer.parseInt(cursor.getString(0)));
+                lieu.setName(cursor.getString(1));
+                lieu.setWifi_id(cursor.getString(2));
+                lieux.add(lieu);
+            } while(cursor.moveToNext());
+        }
+
+        return lieux;
+    }
+
     public void ajoutRappel(RappelData rappel){
 
         SQLiteDatabase db = this.getWritableDatabase();
@@ -108,6 +128,22 @@ public class BDD extends SQLiteOpenHelper {
                 null, values);
         db.close();
     }
+
+    public void ajoutLieu(LieuData lieu){
+
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+
+       // values.put(KEY_LIEU_ID, getMax() + 1);
+        values.put(KEY_LIEU_NAME, lieu.getName());
+        values.put(KEY_LIEU_WIFI_ID, lieu.getWifi_id());
+
+        db.insert(TABLE_LIEU,
+                null, values);
+        db.close();
+    }
+
     public void deleteRappel(RappelData element) {
 
         SQLiteDatabase db = this.getWritableDatabase();
@@ -117,20 +153,6 @@ public class BDD extends SQLiteOpenHelper {
                 + " = " + id, null);
     }
 
-    public void ajoutLieu(LieuData lieu){
-
-        SQLiteDatabase db = this.getWritableDatabase();
-
-        ContentValues values = new ContentValues();
-
-        values.put(KEY_LIEU_ID, getMax() + 1);
-        values.put(KEY_LIEU_NAME, lieu.getName());
-        values.put(KEY_LIEU_WIFI_ID, lieu.getWifi_id());
-
-        db.insert(TABLE_LIEU,
-                null, values);
-        db.close();
-    }
     public void deleteLieu(LieuData element) {
 
         SQLiteDatabase db = this.getWritableDatabase();

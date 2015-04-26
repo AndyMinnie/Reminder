@@ -34,7 +34,8 @@ public class AjoutRappel extends Fragment {
     public void enregistrer(){
 
         RappelData dataInput = new RappelData();
-        dataInput.setDate(((EditText) getView().findViewById(R.id.date)).getText().toString());
+
+      //  dataInput.setDate(((EditText) getView().findViewById(R.id.date)).getText().toString());
         dataInput.setRappel(((EditText) getView().findViewById(R.id.rappel)).getText().toString());
         dataInput.setLieu(((EditText) getView().findViewById(R.id.lieu)).getText().toString());
 

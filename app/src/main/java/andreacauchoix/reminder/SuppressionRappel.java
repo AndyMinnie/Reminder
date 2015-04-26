@@ -118,31 +118,4 @@ public class SuppressionRappel extends ListFragment {
         }
     }
 
-   /* public boolean onContextItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case ID_SUPPR:
-                AlertDialog.Builder newDialog = new AlertDialog.Builder(getActivity());
-                newDialog.setTitle("Supprimer Note");
-                newDialog.setMessage("Voulez-vous supprimer cette note?");
-                newDialog.setPositiveButton("Oui", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        BDD datasource = new BDD(getActivity());
-                        values.remove(dataSelected);
-                        //datasource.deleteElement(dataSelected, mode);
-                        adapter.remove(dataSelected);
-                        setListAdapter(adapter);
-                        Toast.makeText(getActivity().getApplicationContext(), "Note supprimée", Toast.LENGTH_SHORT).show();
-                    }
-                });
-                newDialog.setNegativeButton("Annuler", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.cancel();
-                    }
-                });
-                newDialog.show();
-                return true;
-        }
-        return super.onContextItemSelected(item);
-    }*/
-
 }

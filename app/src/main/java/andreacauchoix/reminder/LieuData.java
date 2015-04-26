@@ -5,11 +5,22 @@ package andreacauchoix.reminder;
  */
 public class LieuData {
 
-    int id;
-    String name;
-    String wifi_id;
+    private int id;
+    private String name;
+    private String wifi_id;
 
-    public LieuData (){
+    public LieuData(){
+
+    }/*
+    public LieuData(String name, String wifi_id){
+        this.name = name;
+        this.wifi_id = wifi_id;
+    }*/
+
+    public LieuData (int id, String name, String wifi_id){
+        this.id = id;
+        this.name = name;
+        this.wifi_id = wifi_id;
     }
 
     public String getWifi_id() {

@@ -12,10 +12,14 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -50,7 +54,34 @@ public class AjoutLieu extends Fragment {
         wifiReciever = new WifiScanReceiver();
         mainWifiObj.startScan();
 
+        Button clickButton = (Button) view.findViewById(R.id.buttonAjout);
+        clickButton.setOnClickListener(new View.OnClickListener() {
+                                           public void onClick(View view) {
+                       switch (view.getId()) {
+                           case R.id.buttonAjout:
+                               Toast.makeText(getActivity().getApplicationContext(), "Lieu enregistré!", Toast.LENGTH_SHORT).show();
+                               enregistrerLieu();
+                               break;
+                       }
+                   }
+               }
+
+
+        );
+
         return view;
+    }
+
+    public void enregistrerLieu(){
+
+        LieuData lieuInput = new LieuData();
+        lieuInput.setName(((EditText) getView().findViewById((R.id.lieu))).getText().toString());
+        lieuInput.setWifi_id(((EditText) getView().findViewById((R.id.lieu))).getText().toString());
+
+
+        BDD datasource = new BDD(getActivity());
+        datasource.ajoutLieu(lieuInput);
+        Toast.makeText(getActivity().getApplicationContext(),"Lieu enregistré!", Toast.LENGTH_SHORT).show();
     }
 
 
@@ -71,7 +102,7 @@ public class AjoutLieu extends Fragment {
             List<ScanResult> wifiScanList = mainWifiObj.getScanResults();
             wifis = new String[wifiScanList.size()];
             for(int i = 0; i < wifiScanList.size(); i++){
-                wifis[i] = ((wifiScanList.get(i)).toString());
+                wifis[i] = ("Nom du WIFI: "+ (wifiScanList.get(i)).SSID +" - BSSID du WIFI: "+ (wifiScanList.get(i)).BSSID);
             }
 
             list.setAdapter(new ArrayAdapter<String>(getActivity().getApplicationContext(),
@@ -80,3 +111,5 @@ public class AjoutLieu extends Fragment {
     }
 
 }
+
+

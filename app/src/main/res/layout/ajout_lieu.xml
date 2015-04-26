@@ -6,6 +6,13 @@
     android:layout_height="fill_parent"
     android:background="#fb030303" tools:context=".MainActivity">
 
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="66dp"
+        android:hint="Lieu"
+        android:id="@+id/lieu"
+        android:singleLine = "true"/>
+
     <ListView android:id="@+id/listView1"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
@@ -19,8 +26,7 @@
 
     <Button
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_weight="10"
+        android:layout_height="66dp"
         android:id="@+id/buttonAjout"
         android:text="Ajouter un wifi"
         android:textColor="#FFFFFF"
