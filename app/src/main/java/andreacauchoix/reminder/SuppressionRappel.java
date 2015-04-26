@@ -18,6 +18,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -75,15 +76,36 @@ public class SuppressionRappel extends ListFragment {
         values = null;
         recupererDatas();
 
-        Log.e("TAG", "nombre de rappels: " + values.size());
-        adapter = new ArrayAdapter<RappelData>(getActivity(),
-                android.R.layout.simple_list_item_1, values);
+        adapter = new ArrayListAdapter(getActivity(), values);
         setListAdapter(adapter);
 
-        ListView lv = (ListView) view.findViewById(android.R.id.list);
-        registerForContextMenu(lv);
-
         return view;
+    }
+
+    @Override
+    public void onListItemClick(ListView l, View v, int position, long id) {
+        super.onListItemClick(l, v, position, id);
+        dataSelected = (RappelData) this.values.get(position);
+
+        AlertDialog.Builder newDialog = new AlertDialog.Builder(getActivity());
+        newDialog.setTitle("Supprimer Rappel");
+        newDialog.setMessage("Voulez-vous supprimer ce rappel?");
+        newDialog.setPositiveButton("Oui", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                BDD datasource = new BDD(getActivity());
+                values.remove(dataSelected);
+                datasource.deleteRappel(dataSelected);
+                adapter.remove(dataSelected);
+                setListAdapter(adapter);
+                Toast.makeText(getActivity().getApplicationContext(), "Rappel supprimé", Toast.LENGTH_SHORT).show();
+            }
+        });
+        newDialog.setNegativeButton("Annuler", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+        newDialog.show();
     }
 
     @Override
@@ -95,6 +117,7 @@ public class SuppressionRappel extends ListFragment {
             menu.add(GROUP_DEFAULT, ID_SUPPR, 0, "Supprimer");
         }
     }
+
    /* public boolean onContextItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case ID_SUPPR:

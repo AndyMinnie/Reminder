@@ -29,19 +29,30 @@ public class BDD extends SQLiteOpenHelper {
 
     private static final String TABLE_RAPPEL  = "rappels";
 
+    private static final String TABLE_LIEU = "lieux";
+
     private static final String KEY_RAPPEL_ID="rappel_id";
     private static final String KEY_RAPPEL_TITRE="rappel_titre";
     private static final String KEY_RAPPEL_DATE="rappel_date";
     private static final String KEY_RAPPEL_LIEU="rappel_lieu";
 
+    private static final String KEY_LIEU_ID = "lieu_id";
+    private static final String KEY_LIEU_NAME = "lieu_name";
+    private static final String KEY_LIEU_WIFI_ID = "lieu_widi_id";
 
     private static final String[] COLONNES_RAPPELS = { KEY_RAPPEL_ID, KEY_RAPPEL_TITRE, KEY_RAPPEL_DATE, KEY_RAPPEL_LIEU};
+    private static final String[] COLONNES_LIEUX = { KEY_LIEU_ID, KEY_LIEU_NAME, KEY_LIEU_WIFI_ID};
 
     private static final String CREATION_TABLE_RAPPELS = "CREATE TABLE "+TABLE_RAPPEL+" ( "+
             KEY_RAPPEL_ID + " INTEGER PRIMARY KEY , "+
             KEY_RAPPEL_TITRE+ " TEXT , "+
             KEY_RAPPEL_DATE + " TEXT," +
             KEY_RAPPEL_LIEU + " TEXT )";
+
+    private static final String CREATION_TABLE_LIEUX = "CREATE TABLE "+TABLE_LIEU+" ( "+
+            KEY_LIEU_ID + " INTEGER PRIMARY KEY , "+
+            KEY_LIEU_NAME+ " TEXT , "+
+            KEY_LIEU_WIFI_ID + " TEXT )";
 
     public BDD(Context context){
         super(context, DATABASE_NAME, null, DATABASE_VERSION );
@@ -50,13 +61,15 @@ public class BDD extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(CREATION_TABLE_RAPPELS);
-        Log.i("table "+TABLE_RAPPEL, "créé");
+        Log.i("table "+TABLE_RAPPEL, "créée");
+        db.execSQL(CREATION_TABLE_LIEUX);
+        Log.i("table "+TABLE_LIEU, "créée");
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_RAPPEL);
-
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_LIEU);
         onCreate(db);
     }
 
@@ -78,6 +91,53 @@ public class BDD extends SQLiteOpenHelper {
         }
 
         return rappels;
+    }
+
+    public void ajoutRappel(RappelData rappel){
+
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+
+        values.put(KEY_RAPPEL_ID, getMax() + 1);
+        values.put(KEY_RAPPEL_TITRE, rappel.getRappel());
+        values.put(KEY_RAPPEL_DATE, rappel.getDate());
+        values.put(KEY_RAPPEL_LIEU, rappel.getLieu());
+
+        db.insert(TABLE_RAPPEL,
+                null, values);
+        db.close();
+    }
+    public void deleteRappel(RappelData element) {
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        long id = element.getId();
+
+        db.delete(TABLE_RAPPEL, KEY_RAPPEL_ID
+                + " = " + id, null);
+    }
+
+    public void ajoutLieu(LieuData lieu){
+
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+
+        values.put(KEY_LIEU_ID, getMax() + 1);
+        values.put(KEY_LIEU_NAME, lieu.getName());
+        values.put(KEY_LIEU_WIFI_ID, lieu.getWifi_id());
+
+        db.insert(TABLE_LIEU,
+                null, values);
+        db.close();
+    }
+    public void deleteLieu(LieuData element) {
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        long id = element.getId();
+
+        db.delete(TABLE_LIEU, KEY_LIEU_ID
+                + " = " + id, null);
     }
 
     public RappelData getRappel(int id){
@@ -138,21 +198,7 @@ public class BDD extends SQLiteOpenHelper {
         return cursor.getString(3);
     }
 
-    public void ajoutRappel(RappelData rappel){
 
-        SQLiteDatabase db = this.getWritableDatabase();
-
-        ContentValues values = new ContentValues();
-
-        values.put(KEY_RAPPEL_ID, getMax() + 1);
-        values.put(KEY_RAPPEL_TITRE, rappel.getRappel());
-        values.put(KEY_RAPPEL_DATE, rappel.getDate());
-        values.put(KEY_RAPPEL_LIEU, rappel.getLieu());
-
-        db.insert(TABLE_RAPPEL,
-                null, values);
-        db.close();
-    }
 
     public int getMax(){
         String query = "SELECT MAX(rappel_id) FROM " + TABLE_RAPPEL;
