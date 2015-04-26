@@ -1,16 +1,16 @@
-package andreacauchoix.reminder;
+package andreacauchoix.reminder.AdapteurDesListes;
 
 import android.content.Context;
-import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.app.Activity;
 import java.util.List;
+
+import andreacauchoix.reminder.BaseDeDonnee.LieuData;
+import andreacauchoix.reminder.R;
 
 public class ArrayListAdapterLieux extends ArrayAdapter {
 

@@ -1,14 +1,11 @@
-package andreacauchoix.reminder;
+package andreacauchoix.reminder.Fragments;
 
 import android.app.AlertDialog;
-import android.app.Fragment;
 import android.app.ListFragment;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -18,8 +15,12 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.ArrayList;
 import java.util.List;
+
+import andreacauchoix.reminder.AdapteurDesListes.ArrayListAdapter;
+import andreacauchoix.reminder.BaseDeDonnee.BDD;
+import andreacauchoix.reminder.BaseDeDonnee.RappelData;
+import andreacauchoix.reminder.R;
 
 /**
  * Created by Andréa on 14/04/2015.

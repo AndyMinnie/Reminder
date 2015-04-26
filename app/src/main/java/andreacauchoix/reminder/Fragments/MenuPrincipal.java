@@ -1,4 +1,4 @@
-package andreacauchoix.reminder;
+package andreacauchoix.reminder.Fragments;
 
 import android.app.Fragment;
 import android.os.Bundle;
@@ -7,6 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import andreacauchoix.reminder.R;
 
 /**
  * Created by Andréa on 14/04/2015.

@@ -1,4 +1,4 @@
-package andreacauchoix.reminder;
+package andreacauchoix.reminder.Activity;
 
         import java.util.ArrayList;
         import java.util.List;
@@ -16,6 +16,15 @@ package andreacauchoix.reminder;
         import android.view.View;
         import android.widget.AdapterView;
         import android.widget.ListView;
+
+        import andreacauchoix.reminder.AdapteurDesListes.CustomDrawerAdapter;
+        import andreacauchoix.reminder.DrawerItem;
+        import andreacauchoix.reminder.Fragments.AjoutLieu;
+        import andreacauchoix.reminder.Fragments.AjoutRappel;
+        import andreacauchoix.reminder.Fragments.MenuPrincipal;
+        import andreacauchoix.reminder.Fragments.SuppressionLieu;
+        import andreacauchoix.reminder.Fragments.SuppressionRappel;
+        import andreacauchoix.reminder.R;
 
 /**
  * Created by Andréa on 14/04/2015.

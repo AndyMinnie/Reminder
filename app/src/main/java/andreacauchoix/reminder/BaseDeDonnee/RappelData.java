@@ -1,4 +1,4 @@
-package andreacauchoix.reminder;
+package andreacauchoix.reminder.BaseDeDonnee;
 
 /**
  * Created by Franck on 25/04/2015.

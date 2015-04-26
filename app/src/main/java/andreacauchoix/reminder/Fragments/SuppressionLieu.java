@@ -1,4 +1,4 @@
-package andreacauchoix.reminder;
+package andreacauchoix.reminder.Fragments;
 
 import android.app.AlertDialog;
 import android.app.ListFragment;
@@ -16,6 +16,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.List;
+
+import andreacauchoix.reminder.AdapteurDesListes.ArrayListAdapterLieux;
+import andreacauchoix.reminder.BaseDeDonnee.BDD;
+import andreacauchoix.reminder.BaseDeDonnee.LieuData;
+import andreacauchoix.reminder.R;
 
 /**
  * Created by Andréa on 14/04/2015.

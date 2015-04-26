@@ -6,19 +6,25 @@
     android:layout_height="fill_parent"
     android:background="#fb030303" tools:context=".MainActivity">
 
+    <Button
+        android:id="@+id/buttonRefresh"
+        android:text="Rechercher les réseaux à proximité"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"></Button>
+
     <EditText
         android:layout_width="fill_parent"
         android:layout_height="66dp"
-        android:hint="Lieu"
+        android:hint="Entrez le nom du lieu"
         android:id="@+id/lieu"
         android:singleLine = "true"/>
 
-    <ListView android:id="@+id/listView1"
+    <ListView android:id="@+id/listViewWifi"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:clipToPadding="false"
         android:divider="#cc35b7ec"
-        android:dividerHeight="10dp"
+        android:dividerHeight="7dp"
         android:layout_weight="1"
         android:drawSelectorOnTop="false"
         android:background="@android:color/background_dark"
@@ -30,7 +36,7 @@
         android:id="@+id/buttonAjout"
         android:text="Ajouter un wifi"
         android:textColor="#FFFFFF"
-        android:background="#cc8b8d91"
+        android:background="#ef3f3f3f"
         />
 
 

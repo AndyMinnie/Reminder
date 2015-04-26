@@ -1,11 +1,8 @@
-package andreacauchoix.reminder;
+package andreacauchoix.reminder.Fragments;
 
-        import android.app.AlertDialog;
         import android.app.DatePickerDialog;
         import android.app.Fragment;
-        import android.content.DialogInterface;
         import android.os.Bundle;
-        import android.util.Log;
         import android.view.LayoutInflater;
         import android.view.View;
         import android.view.ViewGroup;
@@ -15,6 +12,10 @@ package andreacauchoix.reminder;
         import android.widget.ImageView;
         import android.widget.TextView;
         import android.widget.Toast;
+
+        import andreacauchoix.reminder.BaseDeDonnee.BDD;
+        import andreacauchoix.reminder.BaseDeDonnee.RappelData;
+        import andreacauchoix.reminder.R;
 
 /**
  * Created by Andréa on 14/04/2015.
