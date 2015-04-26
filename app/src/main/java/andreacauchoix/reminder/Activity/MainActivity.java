@@ -18,7 +18,7 @@ package andreacauchoix.reminder.Activity;
         import android.widget.ListView;
 
         import andreacauchoix.reminder.AdapteurDesListes.CustomDrawerAdapter;
-        import andreacauchoix.reminder.DrawerItem;
+        import andreacauchoix.reminder.AdapteurDesListes.DrawerItem;
         import andreacauchoix.reminder.Fragments.AjoutLieu;
         import andreacauchoix.reminder.Fragments.AjoutRappel;
         import andreacauchoix.reminder.Fragments.MenuPrincipal;

@@ -52,13 +52,14 @@ public class BDD extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(CREATION_TABLE_RAPPELS);
-        Log.i("table "+TABLE_RAPPEL, "créée");
+        Log.e("TAGGGG0","table "+TABLE_RAPPEL+ "créée");
         db.execSQL(CREATION_TABLE_LIEUX);
-        Log.i("table "+TABLE_LIEU, "créée");
+        Log.e("TAGGGG0","table "+TABLE_LIEU+ "créée");
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        Log.e("TAGGGGGG", "On Upgrade!!!!!");
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_RAPPEL);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_LIEU);
         onCreate(db);
@@ -68,7 +69,7 @@ public class BDD extends SQLiteOpenHelper {
         ArrayList<RappelData> rappels = new ArrayList<RappelData>();
 
         String query = "SELECT * FROM " + TABLE_RAPPEL;
-        SQLiteDatabase db = this.getReadableDatabase();
+        SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(query, null);
 
         if(cursor.moveToFirst()){
@@ -88,7 +89,7 @@ public class BDD extends SQLiteOpenHelper {
         ArrayList<LieuData> lieux = new ArrayList<LieuData>();
 
         String query = "SELECT * FROM " + TABLE_LIEU;
-        SQLiteDatabase db = this.getReadableDatabase();
+        SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(query, null);
 
         if(cursor.moveToFirst()){

@@ -1,4 +1,4 @@
-package andreacauchoix.reminder;
+package andreacauchoix.reminder.AdapteurDesListes;
 
 /**
  * Created by Andréa on 14/04/2015.

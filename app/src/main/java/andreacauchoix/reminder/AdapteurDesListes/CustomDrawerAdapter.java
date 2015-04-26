@@ -11,7 +11,6 @@ package andreacauchoix.reminder.AdapteurDesListes;
         import android.widget.ImageView;
         import android.widget.TextView;
 
-        import andreacauchoix.reminder.DrawerItem;
         import andreacauchoix.reminder.R;
 
 /**
