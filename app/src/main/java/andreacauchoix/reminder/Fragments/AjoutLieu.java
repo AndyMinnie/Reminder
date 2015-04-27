@@ -1,9 +1,12 @@
 package andreacauchoix.reminder.Fragments;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.app.Fragment;
+import android.app.ListFragment;
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.wifi.ScanResult;
@@ -27,13 +30,14 @@ import java.util.List;
 import andreacauchoix.reminder.AdapteurDesListes.ListWifiAdapter;
 import andreacauchoix.reminder.BaseDeDonnee.BDD;
 import andreacauchoix.reminder.BaseDeDonnee.LieuData;
+import andreacauchoix.reminder.BaseDeDonnee.RappelData;
 import andreacauchoix.reminder.R;
 import andreacauchoix.reminder.Wifi.WifiItem;
 
 /**
  * Created by Andréa on 14/04/2015.
  */
-public class AjoutLieu extends Fragment {
+public class AjoutLieu extends ListFragment {
 
     ImageView ivIcon;
     TextView tvItemName;
@@ -46,6 +50,8 @@ public class AjoutLieu extends Fragment {
 
     public static final String IMAGE_RESOURCE_ID = "iconResourceID";
     public static final String ITEM_NAME = "itemName";
+
+    WifiItem wifiSelected;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -83,7 +89,6 @@ public class AjoutLieu extends Fragment {
         mainWifiObj = (WifiManager) getActivity().getSystemService(Context.WIFI_SERVICE);
         wifiReciever = new WifiScanReceiver();
         mainWifiObj.startScan();
-
 */
 
         Button clickButton = (Button) view.findViewById(R.id.buttonAjout);
@@ -94,22 +99,25 @@ public class AjoutLieu extends Fragment {
                        Toast.makeText(getActivity().getApplicationContext(), "Lieu enregistré!", Toast.LENGTH_SHORT).show();
                        enregistrerLieu();
                        break;
-
                    }
            }
           }
-
-
         );
 
         return view;
+    }
+
+    @Override
+    public void onListItemClick(ListView l, View v, int position, long id) {
+        super.onListItemClick(l, v, position, id);
+        wifiSelected = (WifiItem) this.listeWifiItem.get(position);
     }
 
     public void enregistrerLieu(){
 
         LieuData lieuInput = new LieuData();
         lieuInput.setName(((EditText) getView().findViewById((R.id.lieu))).getText().toString());
-        lieuInput.setWifi_id(((TextView) getView().findViewById((R.id.tvWifiMac))).getText().toString());
+        lieuInput.setWifi_id(wifiSelected.getAPName());
 
 
         BDD datasource = new BDD(getActivity());

@@ -42,9 +42,7 @@ public class SuppressionRappel extends ListFragment {
 
     RappelData dataSelected;
 
-    public SuppressionRappel() {
-
-    }
+    public SuppressionRappel() {}
 
     /*protected void onResume() {
         recupererDatas();
