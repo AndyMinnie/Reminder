@@ -19,7 +19,7 @@
         android:id="@+id/lieu"
         android:singleLine = "true"/>
 
-    <ListView android:id="@+id/listViewWifi"
+    <ListView android:id="@+id/list"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:clipToPadding="false"

@@ -16,6 +16,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -37,7 +38,7 @@ import andreacauchoix.reminder.Wifi.WifiItem;
 /**
  * Created by Andréa on 14/04/2015.
  */
-public class AjoutLieu extends ListFragment {
+public class AjoutLieu extends Fragment {
 
     ImageView ivIcon;
     TextView tvItemName;
@@ -59,7 +60,7 @@ public class AjoutLieu extends ListFragment {
 
         View view = inflater.inflate(R.layout.ajout_lieu, container,
                 false);
-        listeViewWifi = (ListView) view.findViewById(R.id.listViewWifi);
+        listeViewWifi = (ListView) view.findViewById(R.id.list);
         boutonRechercher = (Button) view.findViewById(R.id.buttonRefresh);
 
         boutonRechercher.setOnClickListener(new View.OnClickListener() {
@@ -85,11 +86,14 @@ public class AjoutLieu extends ListFragment {
         // On attache le receiver au scan result
        getActivity().registerReceiver(broadcastReceiver, new IntentFilter(
                 WifiManager.SCAN_RESULTS_AVAILABLE_ACTION));
- /*       list = (ListView) view.findViewById(R.id.listView1);
-        mainWifiObj = (WifiManager) getActivity().getSystemService(Context.WIFI_SERVICE);
-        wifiReciever = new WifiScanReceiver();
-        mainWifiObj.startScan();
-*/
+
+        listeViewWifi.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position,
+                                    long id) {
+               wifiSelected = (WifiItem) listeViewWifi.getItemAtPosition(position);
+            }
+        });
 
         Button clickButton = (Button) view.findViewById(R.id.buttonAjout);
         clickButton.setOnClickListener(new View.OnClickListener() {
@@ -107,18 +111,16 @@ public class AjoutLieu extends ListFragment {
         return view;
     }
 
-    @Override
-    public void onListItemClick(ListView l, View v, int position, long id) {
-        super.onListItemClick(l, v, position, id);
-        wifiSelected = (WifiItem) this.listeWifiItem.get(position);
-    }
-
     public void enregistrerLieu(){
 
+        Log.e("TAG", wifiSelected.getAPName());
         LieuData lieuInput = new LieuData();
         lieuInput.setName(((EditText) getView().findViewById((R.id.lieu))).getText().toString());
-        lieuInput.setWifi_id(wifiSelected.getAPName());
-
+        if(wifiSelected != null) {
+            lieuInput.setWifi_id(wifiSelected.getAdresseMac());
+        }
+        else
+            lieuInput.setWifi_id("");
 
         BDD datasource = new BDD(getActivity());
         datasource.ajoutLieu(lieuInput);
