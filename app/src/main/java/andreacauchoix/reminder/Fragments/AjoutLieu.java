@@ -60,6 +60,7 @@ public class AjoutLieu extends Fragment {
 
         View view = inflater.inflate(R.layout.ajout_lieu, container,
                 false);
+
         listeViewWifi = (ListView) view.findViewById(R.id.list);
         boutonRechercher = (Button) view.findViewById(R.id.buttonRefresh);
 
