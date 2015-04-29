@@ -56,8 +56,6 @@ public class AjoutRappel extends DialogFragment {
     ListView list;
     private List<LieuData> listeLieuxItem;
     private LieuxAdapter lieuxAdapter;
-    private LieuData lieuDataSelected;
-    ArrayAdapter<LieuData> adapter;
 
     private int year;
     private int month;

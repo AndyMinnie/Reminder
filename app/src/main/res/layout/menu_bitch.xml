@@ -12,24 +12,16 @@
      fragment_layout_three.xml
     **********************************************************************
       -->
-
     <ImageView
         android:id="@+id/frag1_icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         />
-
-    <TextView
-        android:id="@+id/frag1_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:textAppearance="?android:attr/textAppearanceLarge"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance= "?android:attr/textAppearanceLarge"
-        android:text="Liste de tout vos rappels"
+        android:text="Tout les rappels"
         android:id="@+id/titleTextView"
         android:layout_gravity="center_horizontal"/>
     <View
@@ -38,6 +30,12 @@
         android:layout_marginBottom="7dp"
         android:layout_marginTop="7dp"
         android:background="#cc35b7ec" />
+    <TextView
+        android:id="@+id/frag1_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:textAppearance="?android:attr/textAppearanceLarge"/>
 
     <ListView
         android:id="@android:id/list"

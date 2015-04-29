@@ -60,7 +60,7 @@ public class ArrayListAdapter extends ArrayAdapter {
             holder = (ViewHolder) viewToUse.getTag();
         }
 
-        holder.titleText.setText(item.getRappel());
+        holder.titleText.setText(item.getRappel()+ " à la "+item.getDate());
         return viewToUse;
     }
 }

@@ -25,11 +25,26 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:textAppearance="?android:attr/textAppearanceLarge"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance= "?android:attr/textAppearanceLarge"
+        android:text="Tout les lieux enregistrés"
+        android:id="@+id/titleTextView"
+        android:layout_gravity="center_horizontal"/>
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="3dp"
+        android:layout_marginBottom="7dp"
+        android:layout_marginTop="7dp"
+        android:background="#cc35b7ec" />
 
     <ListView
         android:id="@android:id/list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:divider="#cc35b7ec"
+        android:dividerHeight="3dp"
         android:text="lieu" />
 
 </LinearLayout>

@@ -60,7 +60,8 @@ public class ArrayListAdapterLieux extends ArrayAdapter {
             holder = (ViewHolder) viewToUse.getTag();
         }
 
-        holder.titleText.setText("ID: "+ item.getId() + " Nom: " + item.getName() + " BSSID: " + item.getWifi_id()); // recupere le titre du wifi enregistré
+        //holder.titleText.setText("ID: "+ item.getId() + " Nom: " + item.getName() + " BSSID: " + item.getWifi_id()); // recupere le titre du wifi enregistré
+        holder.titleText.setText(" Nom du lieu: " + item.getName());
         return viewToUse;
     }
 }

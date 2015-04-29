@@ -48,6 +48,12 @@
             android:textColor="#fb030303"
             android:background="#cc35b7ec"/>
     </LinearLayout>
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="3dp"
+            android:layout_marginBottom="7dp"
+            android:layout_marginTop="7dp"
+            android:background="#cc35b7ec" />
         <ListView
             android:id="@+id/listview"
             android:scrollbars="vertical"
@@ -58,7 +64,12 @@
             android:listSelector="@android:color/darker_gray"
             >
         </ListView>
-
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="3dp"
+            android:layout_marginBottom="7dp"
+            android:layout_marginTop="7dp"
+            android:background="#cc35b7ec" />
         <EditText
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
