@@ -29,15 +29,10 @@
         . . .
         </service>
 
-        <receiver android:name="com.example.android.NetWatcher" >
+        <receiver android:name=".Activity.NetWatcher" >
             <intent-filter>
                 <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
             </intent-filter>
-        </receiver>
-        <receiver
-            android:name=".Activity.NetWatcher"
-            android:enabled="true"
-            android:exported="true" >
         </receiver>
     </application>
 
