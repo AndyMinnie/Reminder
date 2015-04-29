@@ -13,6 +13,10 @@
     <string name="title_3"> Ajout de lieux</string>
     <string name="title_4"> Suppression de lieux</string>
 
+    <string name="local_service_started">debut</string>
+    <string name="local_service_stopped">fin</string>
+
+
     <string name="rappel">Veuillez entrez ici votre rappel</string>
     <string name="message">Salut les petits loups!! Vous pouvez regardez un peu ce que jai fait en cliquant sur le menu \à gauche, j\'ai juste mis en place les bases de l\'application</string>
 </resources>
