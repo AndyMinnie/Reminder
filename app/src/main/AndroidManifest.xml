@@ -5,10 +5,11 @@
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name">
+        android:label="@string/app_name" >
         <activity
             android:name=".Activity.MainActivity"
             android:label="@string/app_name" >
@@ -18,13 +19,26 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <service android:enabled="true"
-        android:isolatedProcess="false"
-        android:label="myService"
-        android:name=".Activity.MyService"
-        android:process=":remote" >
+
+        <service
+            android:name=".Activity.MyService"
+            android:enabled="true"
+            android:isolatedProcess="false"
+            android:label="myService"
+            android:process=":remote" >
         . . .
-    </service>
+        </service>
+
+        <receiver android:name="com.example.android.NetWatcher" >
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+            </intent-filter>
+        </receiver>
+        <receiver
+            android:name=".Activity.NetWatcher"
+            android:enabled="true"
+            android:exported="true" >
+        </receiver>
     </application>
 
 </manifest>

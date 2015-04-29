@@ -95,9 +95,9 @@ public class AjoutRappel extends DialogFragment {
 
         BDD datasource = new BDD(getActivity());
         datasource.ajoutRappel(dataInput);
-        Toast.makeText(getActivity().getApplicationContext(),"Text Note Saved!", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getActivity().getApplicationContext(),"Rappel Enregistré!", Toast.LENGTH_SHORT).show();
     }
-    public void enregistrerLieu(){
+    /*public void enregistrerLieu(){
 
         Log.e("TAG", wifiSelected.getWifi_id());
         LieuData lieuInput = new LieuData();
@@ -107,7 +107,7 @@ public class AjoutRappel extends DialogFragment {
         BDD datasource = new BDD(getActivity());
         datasource.ajoutLieu(lieuInput);
         Toast.makeText(getActivity().getApplicationContext(),"Lieu enregistré!", Toast.LENGTH_SHORT).show();
-    }
+    }*/
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -141,7 +141,7 @@ public class AjoutRappel extends DialogFragment {
             public void onItemClick(AdapterView<?> parent, View view, int position,
                                     long id) {
                 wifiSelected = (LieuData) listeViewWifi.getItemAtPosition(position);
-            }
+              }
         });
         Output = (TextView) view.findViewById(R.id.date);
         changeDate = (Button) view.findViewById(R.id.changer_date);

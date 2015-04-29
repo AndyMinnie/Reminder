@@ -47,7 +47,6 @@ public class BDD extends SQLiteOpenHelper {
 
     public BDD(Context context){
         super(context, DATABASE_NAME, null, DATABASE_VERSION );
-        Log.e("BDD Constructeur", "Construction !");
     }
     @Override
     public void onCreate(SQLiteDatabase db) {
@@ -59,7 +58,6 @@ public class BDD extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        Log.e("TAGGGGGG", "On Upgrade!!!!!");
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_RAPPEL);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_LIEU);
         onCreate(db);
@@ -78,6 +76,7 @@ public class BDD extends SQLiteOpenHelper {
                 rappel.setId(Integer.parseInt(cursor.getString(0)));
                 rappel.setRappel(cursor.getString(1));
                 rappel.setDate(cursor.getString(2));
+                rappel.setLieu(cursor.getString(3));
                 rappels.add(rappel);
             } while(cursor.moveToNext());
         }

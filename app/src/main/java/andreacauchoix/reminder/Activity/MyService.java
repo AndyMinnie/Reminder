@@ -6,8 +6,10 @@ import android.app.Service;
 import android.app.TaskStackBuilder;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.wifi.ScanResult;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.Binder;
@@ -17,9 +19,13 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
 
+import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import andreacauchoix.reminder.BaseDeDonnee.BDD;
+import andreacauchoix.reminder.BaseDeDonnee.LieuData;
+import andreacauchoix.reminder.BaseDeDonnee.RappelData;
 import andreacauchoix.reminder.R;
 
 /**
@@ -33,6 +39,11 @@ public class MyService extends Service {
     // We use it on Notification start, and to cancel it.
     private int NOTIFICATION = R.string.local_service_started;
 
+    List<RappelData> rappels;
+    List<LieuData> lieux;
+    BDD datasource;
+
+    int nbNotification = 0;
 
     /**
      * Class for clients to access.  Because we know this service always
@@ -49,18 +60,38 @@ public class MyService extends Service {
     public void onCreate() {
         mNM = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
 
+        datasource = new BDD(getApplicationContext());
+        rappels = datasource.getRappels();
+        lieux = datasource.getLieux();
+
+        String actualLieu = getCurrentSsid(getApplicationContext());
+        for(RappelData rd : rappels) {
+               if(rd.getLieu().equals(actualLieu)){
+                    showNotification("Nouveau Rappel",rd.getRappel());
+                }
+        }
+
         // TODO
         //mTim.schedule(new MyTask(),  System.currentTimeMillis() + 2000);
 
         // Display a notification about us starting.  We put an icon in the status bar.
-        showNotification();
+        //showNotification("My Notification","Hello World");
     }
+
+
+    public LieuData recupererLieu(String name){
+        for(LieuData l : lieux)
+            if(l.getName().equals(name))
+                return l;
+        return null;
+    }
+
 
     public class MyTask extends TimerTask {
 
         @Override
         public void run() {
-            showNotification();
+            //showNotification("My Notification","Hello World");
         }
     }
 
@@ -96,12 +127,13 @@ public class MyService extends Service {
     /**
      * Show a notification while this service is running.
      */
-    private void showNotification() {
+    private void showNotification(String title, String text) {
+        nbNotification++;
         NotificationCompat.Builder mBuilder =
                 new NotificationCompat.Builder(this)
                         .setSmallIcon(R.drawable.panda)
-                        .setContentTitle("My notification")
-                        .setContentText("Hello World!");
+                        .setContentTitle(title)
+                        .setContentText(text);
 // Creates an explicit intent for an Activity in your app
         Intent resultIntent = new Intent(this, MainActivity.class);
 
@@ -122,20 +154,20 @@ public class MyService extends Service {
         mBuilder.setContentIntent(resultPendingIntent);
 
 // mId allows you to update the notification later on.
-        mNM.notify(NOTIFICATION, mBuilder.build());
+        mNM.notify(nbNotification, mBuilder.build());
     }
 
     public static String getCurrentSsid(Context context) {
-        String ssid = null;
+        String bssid = null;
         ConnectivityManager connManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
         if (networkInfo.isConnected()) {
             final WifiManager wifiManager = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
             final WifiInfo connectionInfo = wifiManager.getConnectionInfo();
             if (connectionInfo != null && !TextUtils.isEmpty(connectionInfo.getSSID())) {
-                ssid = connectionInfo.getSSID();
+                bssid = connectionInfo.getBSSID();
             }
         }
-        return ssid;
+        return bssid;
     }
 }
