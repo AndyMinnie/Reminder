@@ -13,6 +13,7 @@
             android:id="@+id/nameLieux"
             android:layout_width="fill_parent"
             android:layout_height="60dp"
+            android:textAppearance= "?android:attr/textAppearanceLarge"
             android:text="AP Name" />
 
     </LinearLayout>
