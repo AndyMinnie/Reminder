@@ -29,11 +29,6 @@
         . . .
         </service>
 
-        <receiver android:name=".Activity.NetWatcher" >
-            <intent-filter>
-                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
-            </intent-filter>
-        </receiver>
     </application>
 
 </manifest>
